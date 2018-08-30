@@ -1,6 +1,5 @@
 import argparse
 import numpy as np
-import sys
 
 def generate():
     parser = argparse.ArgumentParser()
@@ -41,11 +40,11 @@ def distance(W, vocab, ivocab, input_term):
             if idx == 0:
                 vec_result = np.copy(W[vocab[term], :])
             else:
-                vec_result += W[vocab[term], :] 
+                vec_result += W[vocab[term], :]
         else:
             print('Word: %s  Out of dictionary!\n' % term)
             return
-    
+
     vec_norm = np.zeros(vec_result.shape)
     d = (np.sum(vec_result ** 2,) ** (0.5))
     vec_norm = (vec_result.T / d).T
@@ -65,10 +64,10 @@ def distance(W, vocab, ivocab, input_term):
 
 
 if __name__ == "__main__":
-    N = 100;          # number of closest words that will be shown
+    N = 10;          # number of closest words that will be shown
     W, vocab, ivocab = generate()
     while True:
-        input_term = raw_input("\nEnter word or sentence (EXIT to break): ")
+        input_term = input("\nEnter word or sentence (EXIT to break): ")
         if input_term == 'EXIT':
             break
         else:
